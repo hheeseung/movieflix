@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/movieflix/static/js/main.c63a35db.js",
+    "index.html": "/movieflix/index.html",
+    "main.c63a35db.js.map": "/movieflix/static/js/main.c63a35db.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c63a35db.js"
+  ]
+}
