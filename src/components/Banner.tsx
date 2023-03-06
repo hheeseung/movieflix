@@ -34,7 +34,7 @@ function Banner({ backdropPath, title, overview }: IBanner) {
   return (
     <BannerImg bgimg={makeImagePath(backdropPath || "")}>
       <Title>{title}</Title>
-      <Overview>{overview}...</Overview>
+      <Overview>{overview}</Overview>
     </BannerImg>
   );
 }

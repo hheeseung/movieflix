@@ -22,38 +22,35 @@ const Loader = styled.div`
 `;
 
 function Home() {
-  const { isLoading: nowPlayingLoading, data: nowPlayingData } =
-    useQuery<IGetMoviesResult>(["movies", "nowPlaying"], getMovies);
+  const { isLoading: nowLoading, data: nowData } = useQuery<IGetMoviesResult>(
+    ["movies", "nowPlaying"],
+    getMovies
+  );
 
-  const { data: popularData } = useQuery(["movies", "popular"], getPopular);
+  const { isLoading: popularLoading, data: popularData } =
+    useQuery<IGetMoviesResult>(["movies", "popular"], getPopular);
 
-  const { data: topRatedData } = useQuery(["movies", "topRated"], getTopRated);
+  const { isLoading: topRateLoading, data: topRatedData } =
+    useQuery<IGetMoviesResult>(["movies", "topRated"], getTopRated);
 
-  const { data: upcomingData } = useQuery(["movies", "upcoming"], getUpcoming);
+  const { isLoading: upcomingLoading, data: upcomingData } =
+    useQuery<IGetMoviesResult>(["movies", "upcoming"], getUpcoming);
 
   return (
     <Wrapper>
-      {nowPlayingLoading ? (
+      {nowLoading && popularLoading && topRateLoading && upcomingLoading ? (
         <Loader>Loading...</Loader>
       ) : (
         <>
           <Banner
-            backdropPath={nowPlayingData?.results[0].backdrop_path}
-            title={nowPlayingData?.results[0].title}
-            overview={nowPlayingData?.results[0].overview}
+            backdropPath={nowData?.results[0].backdrop_path}
+            title={nowData?.results[0].title}
+            overview={nowData?.results[0].overview}
           />
-          {nowPlayingData && (
-            <ContentsSlider title="상영 중인 영화" data={nowPlayingData} />
-          )}
-          {upcomingData && (
-            <ContentsSlider title="개봉 예정 영화" data={upcomingData} />
-          )}
-          {topRatedData && (
-            <ContentsSlider title="평점 높은 영화" data={topRatedData} />
-          )}
-          {popularData && (
-            <ContentsSlider title="인기 영화" data={popularData} />
-          )}
+          <ContentsSlider data={nowData} title="상영 중인 영화" />
+          <ContentsSlider data={popularData} title="인기 영화" />
+          <ContentsSlider data={topRatedData} title="평점 높은 영화" />
+          <ContentsSlider data={upcomingData} title="개봉 예정 영화" />
         </>
       )}
     </Wrapper>
