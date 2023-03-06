@@ -28,9 +28,9 @@ export async function getMovies() {
   return await response.json();
 }
 
-export async function getLatest() {
+export async function getPopular() {
   const response = await fetch(
-    `${BASE_PATH}/movie/latest?api_key=${API_KEY}&${LANGUAGE_REGION}`
+    `${BASE_PATH}/movie/popular?api_key=${API_KEY}&${LANGUAGE_REGION}`
   );
   return await response.json();
 }
