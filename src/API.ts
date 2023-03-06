@@ -22,6 +22,27 @@ export interface IGetResult {
   total_results: number;
 }
 
+export interface ISearchResult {
+  id: number;
+  name?: string;
+  title?: string;
+  backdrop_path: string;
+  poster_path: string;
+  vote_average: number;
+  overview: string;
+  original_title: string;
+  release_date?: string; // 영화
+  first_air_date?: string; // 시리즈
+}
+
+export interface IGetSearch {
+  page: number;
+  results: ISearchResult[];
+  total_pages: number;
+  total_results: number;
+  dates: string;
+}
+
 export async function getMovies() {
   const response = await fetch(
     `${BASE_PATH}/movie/now_playing?api_key=${API_KEY}&${LANGUAGE_REGION}`
@@ -74,6 +95,13 @@ export async function getPopularShow() {
 export async function getTopRatedShow() {
   const response = await fetch(
     `${BASE_PATH}/tv/top_rated?api_key=${API_KEY}&${LANGUAGE_REGION}`
+  );
+  return await response.json();
+}
+
+export async function getSearch(keyword: string) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${keyword}&${LANGUAGE_REGION}`
   );
   return await response.json();
 }
