@@ -2,11 +2,11 @@ import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
-import { IGetMoviesResult } from "../API";
+import { IGetResult } from "../API";
 import { makeImagePath } from "../utils/utils";
 
 interface IProps {
-  data: IGetMoviesResult | undefined;
+  data: IGetResult | undefined;
   title: string;
 }
 
@@ -154,9 +154,9 @@ const infoVars = {
 
 const offset = 6;
 
-function ContentsSlider({ data, title }: IProps) {
+function TvSlider({ data, title }: IProps) {
   const history = useHistory();
-  const bigMovieMatch = useRouteMatch<{ movieId: string }>("/movies/:movieId");
+  const bigMovieMatch = useRouteMatch<{ tvId: string }>("/tvshow/:tvId");
   const { scrollY } = useScroll();
 
   const [index, setIndex] = useState(0);
@@ -166,21 +166,20 @@ function ContentsSlider({ data, title }: IProps) {
     if (data) {
       if (leaving) return;
       toggleLeaving();
-      const totalMovies = data?.results.length - 1;
-      const maxIdx = Math.floor(totalMovies / offset) - 1;
+      const totalTv = data?.results.length - 1;
+      const maxIdx = Math.floor(totalTv / offset) - 1;
       setIndex((prev) => (prev === maxIdx ? 0 : prev + 1));
     }
   };
-  const onBoxClicked = (movieId: number) => {
-    history.push(`/movies/${movieId}`);
+  const onBoxClicked = (tvId: number) => {
+    history.push(`/tvshow/${tvId}`);
   };
-  const onOverlayClick = () => history.push("/");
+  const onOverlayClick = () => history.goBack();
   const clickedMovie =
-    bigMovieMatch?.params.movieId &&
-    data?.results.find((movie) => movie.id === +bigMovieMatch.params.movieId);
+    bigMovieMatch?.params.tvId &&
+    data?.results.find((tv) => tv.id === +bigMovieMatch.params.tvId);
 
   return (
-    // <Slider onClick={increaseIdx}>
     <>
       <Slider>
         <Title>{title}</Title>
@@ -196,19 +195,19 @@ function ContentsSlider({ data, title }: IProps) {
             {data?.results
               .slice(1)
               .slice(offset * index, offset * index + offset)
-              .map((movie) => (
+              .map((tv) => (
                 <Box
-                  layoutId={movie.id + ""}
-                  key={movie.id}
+                  layoutId={tv.id + ""}
+                  key={tv.id}
                   variants={boxVars}
                   whileHover="hover"
                   initial="normal"
                   transition={{ type: "tween" }}
-                  bgimg={makeImagePath(movie.backdrop_path, "w500")}
-                  onClick={() => onBoxClicked(movie.id)}
+                  bgimg={makeImagePath(tv.backdrop_path, "w500")}
+                  onClick={() => onBoxClicked(tv.id)}
                 >
                   <Info variants={infoVars}>
-                    <h4>{movie.title}</h4>
+                    <h4>{tv.name}</h4>
                   </Info>
                 </Box>
               ))}
@@ -230,7 +229,7 @@ function ContentsSlider({ data, title }: IProps) {
             />
             <BigMovie
               style={{ top: scrollY.get() + 100 }}
-              layoutId={bigMovieMatch.params.movieId}
+              layoutId={bigMovieMatch.params.tvId}
             >
               {clickedMovie && (
                 <>
@@ -241,7 +240,7 @@ function ContentsSlider({ data, title }: IProps) {
                       )`,
                     }}
                   />
-                  <BigTitle>{clickedMovie.title}</BigTitle>
+                  <BigTitle>{clickedMovie.name}</BigTitle>
                   <div
                     style={{
                       margin: "10px 20px",
@@ -263,7 +262,9 @@ function ContentsSlider({ data, title }: IProps) {
                       }}
                     />
                     <div style={{ width: "50%", lineHeight: "1.5" }}>
-                      {clickedMovie.overview}
+                      {clickedMovie.overview
+                        ? clickedMovie.overview
+                        : "등록된 미리보기가 없습니다."}
                     </div>
                   </div>
                 </>
@@ -276,4 +277,4 @@ function ContentsSlider({ data, title }: IProps) {
   );
 }
 
-export default ContentsSlider;
+export default TvSlider;

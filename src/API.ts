@@ -7,10 +7,11 @@ interface IMovie {
   id: number;
   overview: string;
   poster_path: string;
-  title: string;
+  title?: string;
+  name?: string;
 }
 
-export interface IGetMoviesResult {
+export interface IGetResult {
   dates: {
     maximum: string;
     minimum: string;
@@ -45,6 +46,34 @@ export async function getTopRated() {
 export async function getUpcoming() {
   const response = await fetch(
     `${BASE_PATH}/movie/upcoming?api_key=${API_KEY}&${LANGUAGE_REGION}`
+  );
+  return await response.json();
+}
+
+export async function getOnAirShow() {
+  const response = await fetch(
+    `${BASE_PATH}/tv/on_the_air?api_key=${API_KEY}&${LANGUAGE_REGION}`
+  );
+  return await response.json();
+}
+
+export async function getAiringToday() {
+  const response = await fetch(
+    `${BASE_PATH}/tv/airing_today?api_key=${API_KEY}&${LANGUAGE_REGION}`
+  );
+  return await response.json();
+}
+
+export async function getPopularShow() {
+  const response = await fetch(
+    `${BASE_PATH}/tv/popular?api_key=${API_KEY}&${LANGUAGE_REGION}`
+  );
+  return await response.json();
+}
+
+export async function getTopRatedShow() {
+  const response = await fetch(
+    `${BASE_PATH}/tv/top_rated?api_key=${API_KEY}&${LANGUAGE_REGION}`
   );
   return await response.json();
 }

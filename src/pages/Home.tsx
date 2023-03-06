@@ -5,10 +5,10 @@ import {
   getPopular,
   getTopRated,
   getUpcoming,
-  IGetMoviesResult,
+  IGetResult,
 } from "../API";
 import Banner from "../components/Banner";
-import ContentsSlider from "../components/ContentsSlider";
+import MovieSlider from "../components/MovieSlider";
 
 const Wrapper = styled.div`
   background: black;
@@ -22,19 +22,21 @@ const Loader = styled.div`
 `;
 
 function Home() {
-  const { isLoading: nowLoading, data: nowData } = useQuery<IGetMoviesResult>(
+  const { isLoading: nowLoading, data: nowData } = useQuery<IGetResult>(
     ["movies", "nowPlaying"],
     getMovies
   );
 
-  const { isLoading: popularLoading, data: popularData } =
-    useQuery<IGetMoviesResult>(["movies", "popular"], getPopular);
+  const { isLoading: popularLoading, data: popularData } = useQuery<IGetResult>(
+    ["movies", "popular"],
+    getPopular
+  );
 
   const { isLoading: topRateLoading, data: topRatedData } =
-    useQuery<IGetMoviesResult>(["movies", "topRated"], getTopRated);
+    useQuery<IGetResult>(["movies", "topRated"], getTopRated);
 
   const { isLoading: upcomingLoading, data: upcomingData } =
-    useQuery<IGetMoviesResult>(["movies", "upcoming"], getUpcoming);
+    useQuery<IGetResult>(["movies", "upcoming"], getUpcoming);
 
   return (
     <Wrapper>
@@ -47,10 +49,10 @@ function Home() {
             title={nowData?.results[0].title}
             overview={nowData?.results[0].overview}
           />
-          <ContentsSlider data={nowData} title="상영 중인 영화" />
-          <ContentsSlider data={popularData} title="인기 영화" />
-          <ContentsSlider data={topRatedData} title="평점 높은 영화" />
-          <ContentsSlider data={upcomingData} title="개봉 예정 영화" />
+          <MovieSlider data={nowData} title="상영 중인 영화" />
+          <MovieSlider data={popularData} title="인기 영화" />
+          <MovieSlider data={topRatedData} title="평점 높은 영화" />
+          <MovieSlider data={upcomingData} title="개봉 예정 영화" />
         </>
       )}
     </Wrapper>
