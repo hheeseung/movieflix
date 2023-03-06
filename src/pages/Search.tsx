@@ -17,7 +17,7 @@ const Title = styled.h3``;
 
 const SearchResult = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 15px;
   margin: 20px 60px;
 `;
@@ -26,7 +26,7 @@ const Box = styled(motion.div)<{ bgimg: string }>`
   background-image: url(${(props) => props.bgimg});
   background-size: cover;
   background-position: center center;
-  height: 300px;
+  height: 200px;
   &:first-child {
     transform-origin: center left;
   }
