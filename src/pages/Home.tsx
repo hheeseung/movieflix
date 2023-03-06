@@ -42,6 +42,9 @@ function Home() {
             title={nowPlayingData?.results[0].title}
             overview={nowPlayingData?.results[0].overview}
           />
+          {nowPlayingData && (
+            <ContentsSlider title="상영 중인 영화" data={nowPlayingData} />
+          )}
           {upcomingData && (
             <ContentsSlider title="개봉 예정 영화" data={upcomingData} />
           )}
@@ -50,9 +53,6 @@ function Home() {
           )}
           {popularData && (
             <ContentsSlider title="인기 영화" data={popularData} />
-          )}
-          {nowPlayingData && (
-            <ContentsSlider title="상영 중인 영화" data={nowPlayingData} />
           )}
         </>
       )}

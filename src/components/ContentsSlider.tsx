@@ -70,15 +70,37 @@ const Info = styled(motion.div)`
   }
 `;
 
+const Next = styled.div`
+  width: 3.5vh;
+  height: 3.5vh;
+  top: 9vh;
+  right: 5px;
+  position: absolute;
+  svg {
+    opacity: 0;
+    fill: rgb(238, 238, 238);
+    :hover {
+      opacity: 1;
+      fill: rgba(238, 238, 238, 0.7);
+    }
+  }
+  z-index: 1;
+  cursor: pointer;
+`;
+
 const rowVars = {
-  hidden: {
-    x: window.outerWidth - 5,
+  hidden: (isNext: boolean) => {
+    return {
+      x: isNext ? window.innerWidth : -window.innerWidth,
+    };
   },
   visible: {
     x: 0,
   },
-  exit: {
-    x: -window.outerWidth + 5,
+  exit: (isNext: boolean) => {
+    return {
+      x: isNext ? -window.innerWidth : window.innerWidth,
+    };
   },
 };
 
@@ -114,19 +136,26 @@ function ContentsSlider({ data, title }: IProps) {
   const history = useHistory();
   const bigMovieMatch = useRouteMatch<{ movieId: string }>("/movies/:movieId");
   const { scrollY } = useScroll();
-
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
+  const [isNext, setIsNext] = useState(true);
+
   const toggleLeaving = () => setLeaving((curr) => !curr);
-  const increaseIdx = () => {
+
+  const nextIndex = () => {
     if (data) {
-      if (leaving) return;
-      toggleLeaving();
-      const totalMovies = data?.results.length - 1;
-      const maxIdx = Math.floor(totalMovies / offset) - 1;
-      setIndex((prev) => (prev === maxIdx ? 0 : prev + 1));
+      if (leaving) {
+        return;
+      } else {
+        const totalMovies = data.results.length;
+        const maxIndex = Math.floor(totalMovies / offset) - 1;
+        toggleLeaving();
+        setIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
+        setIsNext(() => true);
+      }
     }
   };
+
   const onBoxClicked = (movieId: number) => {
     history.push(`/movies/${movieId}`);
   };
@@ -139,7 +168,11 @@ function ContentsSlider({ data, title }: IProps) {
     <>
       <Slider>
         <Title>{title}</Title>
-        <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
+        <AnimatePresence
+          initial={false}
+          onExitComplete={toggleLeaving}
+          custom={isNext}
+        >
           <Row
             variants={rowVars}
             initial="hidden"
@@ -147,6 +180,7 @@ function ContentsSlider({ data, title }: IProps) {
             exit="exit"
             transition={{ type: "tween", duration: 1 }}
             key={index}
+            custom={isNext}
           >
             {data?.results
               .slice(1)
@@ -159,7 +193,9 @@ function ContentsSlider({ data, title }: IProps) {
                   whileHover="hover"
                   initial="normal"
                   transition={{ type: "tween" }}
-                  bgimg={makeImagePath(movie.backdrop_path, "w500")}
+                  bgimg={
+                    makeImagePath(movie.backdrop_path, "w500") || "No Image"
+                  }
                   onClick={() => onBoxClicked(movie.id)}
                 >
                   <Info variants={infoVars}>
@@ -169,6 +205,11 @@ function ContentsSlider({ data, title }: IProps) {
               ))}
           </Row>
         </AnimatePresence>
+        <Next onClick={nextIndex}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+            <path d="M342.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L274.7 256 105.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+          </svg>
+        </Next>
       </Slider>
       {/* <AnimatePresence>
         {bigMovieMatch ? (
