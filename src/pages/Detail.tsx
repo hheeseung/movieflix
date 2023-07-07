@@ -9,6 +9,7 @@ import {
 import { makeImagePath } from "../utils/utils";
 import ContentsSlider from "../components/ContentsSlider";
 import NoBanner from "../assets/no-banner.jpg";
+import NoPoster from "../assets/no-poster.jpg";
 
 export default function Detail() {
   const {
@@ -40,11 +41,15 @@ export default function Detail() {
               <img src={NoBanner} alt="no-banner" />
             )}
             <div className="mt-8 flex">
-              <img
-                className="shadow-md"
-                src={data && makeImagePath(data.poster_path, "w300")}
-                alt={data?.name ?? data?.title}
-              />
+              {data?.poster_path ? (
+                <img
+                  className="shadow-md"
+                  src={data && makeImagePath(data.poster_path, "w300")}
+                  alt={data?.name ?? data?.title}
+                />
+              ) : (
+                <img className="w-[300px]" src={NoPoster} alt="no-poster" />
+              )}
               <div className="ml-5 space-y-2">
                 <h1 className="font-bold text-3xl">
                   {data?.title ?? data?.name}
