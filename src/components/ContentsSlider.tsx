@@ -23,8 +23,8 @@ export default function ContentsSlider({ title, data }: IContentsSlider) {
   };
 
   return (
-    <>
-      <h1>{title}</h1>
+    <div className="mt-3 mb-8">
+      <h1 className="font-bold text-2xl mb-3">{title}</h1>
       <ul>
         <Slider {...settings}>
           {data?.map((movie) => (
@@ -38,6 +38,6 @@ export default function ContentsSlider({ title, data }: IContentsSlider) {
           ))}
         </Slider>
       </ul>
-    </>
+    </div>
   );
 }
