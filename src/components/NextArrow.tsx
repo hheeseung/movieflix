@@ -8,7 +8,7 @@ export default function NextArrow(props: any) {
         borderRadius: "50%",
         display: "block",
         position: "absolute",
-        right: "10px",
+        right: "20px",
         zIndex: "1",
       }}
       onClick={onClick}

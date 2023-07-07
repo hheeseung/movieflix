@@ -26,7 +26,7 @@ export default function TvShows() {
     loadingOnTheAir || loadingPopular || loadingTopRated || loadingTrending;
 
   return (
-    <>
+    <section className="mt-8">
       {isLoading ? (
         <p className="h-screen flex justify-center items-center">Loading...</p>
       ) : (
@@ -43,6 +43,6 @@ export default function TvShows() {
           )}
         </>
       )}
-    </>
+    </section>
   );
 }
