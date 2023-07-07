@@ -1,5 +1,10 @@
 import { IGetResultProps } from "../api/api";
 import ContentsSliderItem from "./ContentsSliderItem";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import NextArrow from "./NextArrow";
+import PrevArrow from "./PrevArrow";
 
 interface IContentsSlider {
   title: string;
@@ -7,19 +12,31 @@ interface IContentsSlider {
 }
 
 export default function ContentsSlider({ title, data }: IContentsSlider) {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
   return (
     <>
       <h1>{title}</h1>
-      <ul className="flex flex-wrap justify-evenly items-center">
-        {data?.map((movie) => (
-          <ContentsSliderItem
-            key={movie.id}
-            id={movie.id}
-            poster_path={movie.poster_path}
-            release_date={movie.release_date}
-            title={movie.title}
-          />
-        ))}
+      <ul>
+        <Slider {...settings}>
+          {data?.map((movie) => (
+            <ContentsSliderItem
+              key={movie.id}
+              id={movie.id}
+              poster_path={movie.poster_path}
+              release_date={movie.release_date}
+              title={movie.title}
+            />
+          ))}
+        </Slider>
       </ul>
     </>
   );

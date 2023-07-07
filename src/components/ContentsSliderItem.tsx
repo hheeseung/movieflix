@@ -8,10 +8,16 @@ export default function ContentsSliderItem({
   title,
 }: IGetResultProps) {
   return (
-    <div>
-      <img src={makeImagePath(poster_path, "w200")} alt={title} />
-      <p>{release_date.substring(0, 4)}</p>
-      <p>{title}</p>
+    <div className="mr-2">
+      <img
+        className="text-center h-96"
+        src={makeImagePath(poster_path, "w300")}
+        alt={title}
+      />
+      <div>
+        <p>{title}</p>
+        <p>{release_date.substring(0, 4)}</p>
+      </div>
     </div>
   );
 }
