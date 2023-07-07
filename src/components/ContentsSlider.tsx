@@ -27,13 +27,15 @@ export default function ContentsSlider({ title, data }: IContentsSlider) {
       <h1 className="font-bold text-2xl mb-3">{title}</h1>
       <ul>
         <Slider {...settings}>
-          {data?.map((movie) => (
+          {data?.map((contents) => (
             <ContentsSliderItem
-              key={movie.id}
-              id={movie.id}
-              poster_path={movie.poster_path}
-              release_date={movie.release_date}
-              title={movie.title}
+              key={contents.id}
+              id={contents.id}
+              poster_path={contents.poster_path}
+              release_date={contents.release_date}
+              first_air_date={contents.first_air_date}
+              title={contents.title}
+              name={contents.name}
             />
           ))}
         </Slider>

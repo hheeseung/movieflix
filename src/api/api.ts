@@ -3,8 +3,25 @@ import axios from "axios";
 export interface IGetResultProps {
   id: number;
   poster_path: string;
-  release_date: string;
-  title: string;
+  release_date?: string;
+  first_air_date?: string;
+  title?: string;
+  name?: string;
+}
+
+export interface IGetDetailProps {
+  id: number;
+  backdrop_path: string;
+  poster_path: string;
+  name?: string;
+  original_name?: string;
+  title?: string;
+  original_title?: string;
+  overview: string;
+  genres: string[];
+  release_date?: string;
+  first_air_date?: string;
+  runtime?: number;
 }
 
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -42,7 +59,7 @@ export async function getTrendingMovies() {
 // TV
 export async function getOnTheAirShows() {
   const response = await axios.get(
-    `${BASE_URL}/tv/on_the_air?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
+    `${BASE_URL}/tv/airing_today?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
   );
   return response.data.results;
 }
@@ -68,9 +85,16 @@ export async function getTrendingShows() {
   return response.data.results;
 }
 
+export async function getDetails(id: number, method: string) {
+  const response = await axios.get(
+    `${BASE_URL}/${method}/${id}?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
+  );
+  return response.data;
+}
+
 export async function getSearch(keyword: string) {
-  const response = await fetch(
+  const response = await axios.get(
     `${BASE_URL}/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${keyword}&${LANGUAGE}`
   );
-  return await response.json();
+  return await response.data;
 }
