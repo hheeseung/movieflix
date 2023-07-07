@@ -19,7 +19,7 @@ export default function Detail() {
     ["contentsId", id],
     () => getDetails(id, pathname.includes("tvshows") ? "tv" : "movie")
   );
-  const { data: similar } = useQuery<IGetResultProps[]>(["similar"], () =>
+  const { data: similar } = useQuery<IGetResultProps[]>(["similar", id], () =>
     getSimilar(id, pathname.includes("tvshows") ? "tv" : "movie")
   );
 
