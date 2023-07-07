@@ -18,10 +18,15 @@ export interface IGetDetailProps {
   title?: string;
   original_title?: string;
   overview: string;
-  genres: string[];
+  genres: IGenres[];
   release_date?: string;
   first_air_date?: string;
   runtime?: number;
+}
+
+export interface IGenres {
+  id: number;
+  name: string;
 }
 
 const BASE_URL = "https://api.themoviedb.org/3";
