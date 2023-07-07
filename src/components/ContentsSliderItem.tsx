@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { IGetResultProps } from "../api/api";
 import { makeImagePath } from "../utils/utils";
+import NoPoster from "../assets/no-poster.jpg";
 
 export default function ContentsSliderItem({
   id,
@@ -18,11 +19,19 @@ export default function ContentsSliderItem({
         to={pathname.includes("tvshows") ? `/tvshows/${id}` : `/movies/${id}`}
         state={{ id }}
       >
-        <img
-          className="text-center h-96 rounded-md shadow-md"
-          src={makeImagePath(poster_path, "w300")}
-          alt={title ?? name}
-        />
+        {poster_path ? (
+          <img
+            className="text-center h-96 rounded-md shadow-md"
+            src={makeImagePath(poster_path, "w300")}
+            alt={title ?? name}
+          />
+        ) : (
+          <img
+            className="text-center h-96 rounded-md shadow-md"
+            src={NoPoster}
+            alt="no-poster"
+          />
+        )}
         <div className="p-2">
           <p className="font-semibold line-clamp-1">{title ?? name}</p>
           <p className="text-sm text-gray-500">

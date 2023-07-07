@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import {
   getMovies,
-  getPopularMovies,
-  getTopRatedMovies,
-  getTrendingMovies,
+  getPopular,
+  getTopRated,
+  getTrending,
   IGetResultProps,
 } from "../api/api";
 import ContentsSlider from "../components/ContentsSlider";
@@ -14,13 +14,13 @@ export default function Movies() {
   >(["getMovies", "nowPlaying"], getMovies);
   const { isLoading: loadingPopular, data: popular } = useQuery<
     IGetResultProps[]
-  >(["getMovies", "popular"], getPopularMovies);
+  >(["getMovies", "popular"], () => getPopular("movie"));
   const { isLoading: loadingTopRated, data: topRated } = useQuery<
     IGetResultProps[]
-  >(["getMovies", "topRated"], getTopRatedMovies);
+  >(["getMovies", "topRated"], () => getTopRated("movie"));
   const { isLoading: loadingTrending, data: trending } = useQuery<
     IGetResultProps[]
-  >(["getMovies", "trending"], getTrendingMovies);
+  >(["getMovies", "trending"], () => getTrending("movie"));
 
   const isLoading =
     loadingNowPlaying || loadingPopular || loadingTopRated || loadingTrending;

@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import {
   getOnTheAirShows,
-  getPopularShows,
-  getTopRatedShows,
-  getTrendingShows,
+  getPopular,
+  getTopRated,
+  getTrending,
   IGetResultProps,
 } from "../api/api";
 import ContentsSlider from "../components/ContentsSlider";
@@ -14,13 +14,13 @@ export default function TvShows() {
   >(["getShows", "onTheAir"], getOnTheAirShows);
   const { isLoading: loadingPopular, data: popular } = useQuery<
     IGetResultProps[]
-  >(["getShows", "popular"], getPopularShows);
+  >(["getShows", "popular"], () => getPopular("tv"));
   const { isLoading: loadingTopRated, data: topRated } = useQuery<
     IGetResultProps[]
-  >(["getShows", "topRated"], getTopRatedShows);
+  >(["getShows", "topRated"], () => getTopRated("tv"));
   const { isLoading: loadingTrending, data: trending } = useQuery<
     IGetResultProps[]
-  >(["getShows", "trending"], getTrendingShows);
+  >(["getShows", "trending"], () => getTrending("tv"));
 
   const isLoading =
     loadingOnTheAir || loadingPopular || loadingTopRated || loadingTrending;

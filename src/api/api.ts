@@ -32,7 +32,6 @@ export interface IGenres {
 const BASE_URL = "https://api.themoviedb.org/3";
 const LANGUAGE = "language=ko-KR&page=1&region=kr";
 
-// Movie
 export async function getMovies() {
   const response = await axios.get(
     `${BASE_URL}/movie/now_playing?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
@@ -40,28 +39,6 @@ export async function getMovies() {
   return response.data.results;
 }
 
-export async function getPopularMovies() {
-  const response = await axios.get(
-    `${BASE_URL}/movie/popular?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
-  );
-  return response.data.results;
-}
-
-export async function getTopRatedMovies() {
-  const response = await axios.get(
-    `${BASE_URL}/movie/top_rated?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
-  );
-  return response.data.results;
-}
-
-export async function getTrendingMovies() {
-  const response = await axios.get(
-    `${BASE_URL}/trending/movie/day?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
-  );
-  return response.data.results;
-}
-
-// TV
 export async function getOnTheAirShows() {
   const response = await axios.get(
     `${BASE_URL}/tv/airing_today?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
@@ -69,32 +46,39 @@ export async function getOnTheAirShows() {
   return response.data.results;
 }
 
-export async function getPopularShows() {
+export async function getPopular(type: string) {
   const response = await axios.get(
-    `${BASE_URL}/tv/popular?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
+    `${BASE_URL}/${type}/popular?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
   );
   return response.data.results;
 }
 
-export async function getTopRatedShows() {
+export async function getTopRated(type: string) {
   const response = await axios.get(
-    `${BASE_URL}/tv/top_rated?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
+    `${BASE_URL}/${type}/top_rated?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
   );
   return response.data.results;
 }
 
-export async function getTrendingShows() {
+export async function getTrending(type: string) {
   const response = await axios.get(
-    `${BASE_URL}/trending/tv/day?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
+    `${BASE_URL}/trending/${type}/day?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
   );
   return response.data.results;
 }
 
-export async function getDetails(id: number, method: string) {
+export async function getDetails(id: number, type: string) {
   const response = await axios.get(
-    `${BASE_URL}/${method}/${id}?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
+    `${BASE_URL}/${type}/${id}?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
   );
   return response.data;
+}
+
+export async function getSimilar(id: number, type: string) {
+  const response = await axios.get(
+    `${BASE_URL}/${type}/${id}/similar?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
+  );
+  return response.data.results;
 }
 
 export async function getSearch(keyword: string) {
