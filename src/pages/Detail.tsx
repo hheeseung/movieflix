@@ -10,6 +10,7 @@ import { makeImagePath } from "../utils/utils";
 import ContentsSlider from "../components/ContentsSlider";
 import NoBanner from "../assets/no-banner.jpg";
 import NoPoster from "../assets/no-poster.jpg";
+import Loading from "../components/Loading";
 
 export default function Detail() {
   const {
@@ -27,7 +28,7 @@ export default function Detail() {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         <>
           <section className="mb-10">

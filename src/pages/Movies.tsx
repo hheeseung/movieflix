@@ -7,6 +7,7 @@ import {
   IGetResultProps,
 } from "../api/api";
 import ContentsSlider from "../components/ContentsSlider";
+import Loading from "../components/Loading";
 
 export default function Movies() {
   const { isLoading: loadingNowPlaying, data: nowPlaying } = useQuery<
@@ -28,7 +29,7 @@ export default function Movies() {
   return (
     <section className="mt-8">
       {isLoading ? (
-        <p className="h-screen flex justify-center items-center">Loading...</p>
+        <Loading />
       ) : (
         <>
           {nowPlaying && (
