@@ -16,6 +16,7 @@ export default function Search() {
   if (isLoading) return <Loading />;
   return (
     <>
+      <p className="mt-4 text-center">"{keyword}"에 대한 검색 결과</p>
       <h1 className="mt-4 font-bold text-2xl mb-3">영화</h1>
       <section className="grid grid-cols-6">
         {data?.map(

@@ -7,11 +7,12 @@ interface IKeywordProps {
 }
 
 export default function SearchForm() {
-  const { register, handleSubmit } = useForm<IKeywordProps>();
+  const { register, handleSubmit, setValue } = useForm<IKeywordProps>();
   const navigate = useNavigate();
 
   const onValid = (data: IKeywordProps) => {
     navigate(`/search?keyword=${data.keyword}`);
+    setValue("keyword", "");
   };
 
   return (
