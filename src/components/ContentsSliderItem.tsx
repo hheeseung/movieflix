@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IGetResultProps } from "../api/api";
 import { makeImagePath } from "../utils/utils";
 import NoPoster from "../assets/no-poster.jpg";
@@ -11,17 +11,12 @@ export default function ContentsSliderItem({
   title,
   name,
 }: IGetResultProps) {
-  const { pathname } = useLocation();
-
   return (
-    <div className="mr-4 hover:brightness-110 transition-all">
-      <Link
-        to={pathname.includes("tvshows") ? `/tvshows/${id}` : `/movies/${id}`}
-        state={{ id }}
-      >
+    <div className="mr-4">
+      <Link to={title ? `/movies/${id}` : `/tvshows/${id}`} state={{ id }}>
         {poster_path ? (
           <img
-            className="text-center h-96 rounded-md shadow-md"
+            className="text-center h-96 rounded-md shadow-md border"
             src={makeImagePath(poster_path, "w300")}
             alt={title ?? name}
           />

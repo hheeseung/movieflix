@@ -9,6 +9,7 @@ import Movies from "./pages/Movies";
 import TvShows from "./pages/TvShows";
 import Detail from "./pages/Detail";
 import Search from "./pages/Search";
+import Likes from "./pages/Likes";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
         path: "/tvshows/:id",
         element: <Detail />,
       },
-      { path: "/search/:keyword", element: <Search /> },
+      { path: "/search", element: <Search /> },
+      { path: "/likes", element: <Likes /> },
     ],
   },
 ]);

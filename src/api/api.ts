@@ -24,6 +24,16 @@ export interface IGetDetailProps {
   runtime?: number;
 }
 
+export interface IGetSearchProps {
+  id: number;
+  title?: string;
+  name?: string;
+  poster_path: string;
+  media_type: string;
+  release_date?: string;
+  first_air_date?: string;
+}
+
 export interface IGenres {
   id: number;
   name: string;
@@ -85,5 +95,5 @@ export async function getSearch(keyword: string) {
   const response = await axios.get(
     `${BASE_URL}/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${keyword}&${LANGUAGE}`
   );
-  return await response.data;
+  return await response.data.results;
 }

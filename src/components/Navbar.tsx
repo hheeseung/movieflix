@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { PiFilmSlate } from "react-icons/pi";
-import Search from "./Search";
+import SearchForm from "./SearchForm";
 
 export default function Navbar() {
   return (
@@ -17,12 +17,10 @@ export default function Navbar() {
         </Link>
         <Link to="/">영화</Link>
         <Link to="/tvshows">드라마</Link>
+        <Link to="/likes">찜한 목록</Link>
       </div>
       <div className="flex items-center space-x-4">
-        <Search />
-        <button className="bg-blue-500 text-white py-2 px-3 rounded-md hover:brightness-110">
-          Login
-        </button>
+        <SearchForm />
       </div>
     </nav>
   );

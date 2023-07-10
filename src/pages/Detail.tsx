@@ -81,7 +81,9 @@ export default function Detail() {
               </div>
             </div>
           </section>
-          {similar && <ContentsSlider title="비슷한 컨텐츠" data={similar} />}
+          {similar && similar.length > 0 ? (
+            <ContentsSlider title="비슷한 컨텐츠" data={similar} />
+          ) : null}
         </>
       )}
     </>
