@@ -2,11 +2,12 @@ import axios from "axios";
 
 export interface IGetResultProps {
   id: number;
-  poster_path: string;
-  release_date?: string;
-  first_air_date?: string;
   title?: string;
   name?: string;
+  poster_path: string;
+  media_type?: string;
+  release_date?: string;
+  first_air_date?: string;
 }
 
 export interface IGetDetailProps {
@@ -22,16 +23,6 @@ export interface IGetDetailProps {
   release_date?: string;
   first_air_date?: string;
   runtime?: number;
-}
-
-export interface IGetSearchProps {
-  id: number;
-  title?: string;
-  name?: string;
-  poster_path: string;
-  media_type: string;
-  release_date?: string;
-  first_air_date?: string;
 }
 
 export interface IGenres {

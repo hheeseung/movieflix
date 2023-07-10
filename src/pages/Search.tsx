@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
-import { IGetSearchProps, getSearch } from "../api/api";
+import { IGetResultProps, getSearch } from "../api/api";
 import Loading from "../components/Loading";
 import ContentsSliderItem from "../components/ContentsSliderItem";
 
@@ -8,7 +8,7 @@ export default function Search() {
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("keyword");
 
-  const { isLoading, data } = useQuery<IGetSearchProps[]>(
+  const { isLoading, data } = useQuery<IGetResultProps[]>(
     ["search", keyword],
     () => getSearch(keyword!)
   );
