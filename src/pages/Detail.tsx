@@ -11,6 +11,7 @@ import ContentsSlider from "../components/ContentsSlider";
 import NoBanner from "../assets/no-banner.jpg";
 import NoPoster from "../assets/no-poster.jpg";
 import Loading from "../components/Loading";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 export default function Detail() {
   const {
@@ -74,10 +75,12 @@ export default function Detail() {
                     <span key={genre.id}>#{genre.name}</span>
                   ))}
                 </div>
-
                 <p>
                   {data?.overview ? data?.overview : "줄거리 정보가 없습니다."}
                 </p>
+                <button className="w-fit text-xl">
+                  <AiFillHeart />
+                </button>
               </div>
             </div>
           </section>
