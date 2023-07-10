@@ -1,3 +1,5 @@
+import { AiOutlineLeft } from "react-icons/ai";
+
 export default function PrevArrow(props: any) {
   const { className, style, onClick } = props;
   return (
@@ -5,13 +7,12 @@ export default function PrevArrow(props: any) {
       className={className}
       style={{
         ...style,
-        borderRadius: "50%",
-        display: "block",
         position: "absolute",
-        left: "5px",
-        zIndex: "1",
+        left: "-30px",
       }}
       onClick={onClick}
-    />
+    >
+      <AiOutlineLeft />
+    </div>
   );
 }

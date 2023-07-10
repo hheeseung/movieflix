@@ -1,17 +1,18 @@
+import { AiOutlineRight } from "react-icons/ai";
+
 export default function NextArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={className}
+      className={`${className} bg-black`}
       style={{
         ...style,
-        borderRadius: "50%",
-        display: "block",
         position: "absolute",
-        right: "20px",
-        zIndex: "1",
+        right: "-30px",
       }}
       onClick={onClick}
-    />
+    >
+      <AiOutlineRight />
+    </div>
   );
 }
