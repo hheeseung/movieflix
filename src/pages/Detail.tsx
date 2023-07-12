@@ -75,7 +75,6 @@ export default function Detail() {
                     <span key={genre.id}>#{genre.name}</span>
                   ))}
                 </div>
-                <p>{data?.overview || "줄거리 정보가 없습니다."}</p>
                 <LikesButton
                   id={data?.id!}
                   poster_path={data?.poster_path!}
@@ -84,6 +83,7 @@ export default function Detail() {
                   release_date={data?.release_date}
                   first_air_date={data?.first_air_date}
                 />
+                <p>{data?.overview || "줄거리 정보가 없습니다."}</p>
               </div>
             </div>
           </section>

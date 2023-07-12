@@ -26,7 +26,10 @@ export default function LikesButton({
   };
 
   return (
-    <button className="w-fit text-xl" onClick={handleLikes}>
+    <button
+      className="w-fit text-xl flex items-center text-red-500"
+      onClick={handleLikes}
+    >
       {likedContents ? <AiFillHeart /> : <AiOutlineHeart />}
     </button>
   );
