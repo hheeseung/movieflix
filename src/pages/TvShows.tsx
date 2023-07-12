@@ -32,15 +32,15 @@ export default function TvShows() {
         <Loading />
       ) : (
         <>
-          {onTheAir && (
-            <ContentsSlider title="방영 중인 드라마" data={onTheAir} />
-          )}
           {popular && <ContentsSlider title="인기 시리즈" data={popular} />}
           {topRated && (
             <ContentsSlider title="평점 높은 시리즈" data={topRated} />
           )}
           {trending && (
             <ContentsSlider title="입소문 자자한 시리즈" data={trending} />
+          )}
+          {onTheAir && (
+            <ContentsSlider title="방영 중인 드라마" data={onTheAir} />
           )}
         </>
       )}
