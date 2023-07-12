@@ -11,7 +11,7 @@ import ContentsSlider from "../components/ContentsSlider";
 import NoBanner from "../assets/no-banner.jpg";
 import NoPoster from "../assets/no-poster.jpg";
 import Loading from "../components/Loading";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import LikesButton from "../components/LikesButton";
 
 export default function Detail() {
   const {
@@ -37,7 +37,7 @@ export default function Detail() {
               <img
                 className="w-full h-96 object-cover opacity-80"
                 src={data && makeImagePath(data.backdrop_path)}
-                alt={data?.name ?? data?.title}
+                alt={data?.name || data?.title}
               />
             ) : (
               <img src={NoBanner} alt="no-banner" />
@@ -47,17 +47,17 @@ export default function Detail() {
                 <img
                   className="shadow-md"
                   src={data && makeImagePath(data.poster_path, "w300")}
-                  alt={data?.name ?? data?.title}
+                  alt={data?.name || data?.title}
                 />
               ) : (
                 <img className="w-[300px]" src={NoPoster} alt="no-poster" />
               )}
               <div className="ml-5 space-y-2">
                 <h1 className="font-bold text-3xl">
-                  {data?.title ?? data?.name}
+                  {data?.title || data?.name}
                 </h1>
                 <h4 className="text-sm">
-                  {data?.original_title ?? data?.original_name}
+                  {data?.original_title || data?.original_name}
                 </h4>
                 <p>
                   {data?.runtime
@@ -67,7 +67,7 @@ export default function Detail() {
                     : null}
                 </p>
                 <p>
-                  {data?.release_date?.substring(0, 4) ??
+                  {data?.release_date?.substring(0, 4) ||
                     data?.first_air_date?.substring(0, 4)}
                 </p>
                 <div className="space-x-1">
@@ -75,12 +75,15 @@ export default function Detail() {
                     <span key={genre.id}>#{genre.name}</span>
                   ))}
                 </div>
-                <p>
-                  {data?.overview ? data?.overview : "줄거리 정보가 없습니다."}
-                </p>
-                <button className="w-fit text-xl">
-                  <AiFillHeart />
-                </button>
+                <p>{data?.overview || "줄거리 정보가 없습니다."}</p>
+                <LikesButton
+                  id={data?.id!}
+                  poster_path={data?.poster_path!}
+                  title={data?.title}
+                  name={data?.name}
+                  release_date={data?.release_date}
+                  first_air_date={data?.first_air_date}
+                />
               </div>
             </div>
           </section>
