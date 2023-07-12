@@ -3,7 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Movies from "./pages/Movies";
 import TvShows from "./pages/TvShows";
@@ -20,6 +24,10 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "/",
+        element: <Navigate to="/movies" replace />,
+      },
+      {
+        path: "/movies",
         element: <Movies />,
       },
       {
