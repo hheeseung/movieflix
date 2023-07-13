@@ -30,6 +30,13 @@ export interface IGenres {
   name: string;
 }
 
+export interface ICreditProps {
+  id: number;
+  name: string;
+  profile_path: string;
+  character: string;
+}
+
 const BASE_URL = "https://api.themoviedb.org/3";
 const LANGUAGE = "language=ko-KR&page=1&region=kr";
 
@@ -73,6 +80,13 @@ export async function getDetails(id: number, type: string) {
     `${BASE_URL}/${type}/${id}?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
   );
   return response.data;
+}
+
+export async function getCredits(id: number, type: string) {
+  const response = await axios.get(
+    `${BASE_URL}/${type}/${id}/credits?${LANGUAGE}&api_key=${process.env.REACT_APP_API_KEY}`
+  );
+  return response.data.cast;
 }
 
 export async function getSimilar(id: number, type: string) {

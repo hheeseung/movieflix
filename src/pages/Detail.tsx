@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 import {
+  ICreditProps,
   IGetDetailProps,
   IGetResultProps,
+  getCredits,
   getDetails,
   getSimilar,
 } from "../api/api";
 import { makeImagePath } from "../utils/utils";
 import ContentsSlider from "../components/ContentsSlider";
-import NoBanner from "../assets/no-banner.jpg";
+import NoBanner from "../assets/no-banner.png";
 import NoPoster from "../assets/no-poster.jpg";
 import Loading from "../components/Loading";
 import LikesButton from "../components/LikesButton";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import Credits from "../components/Credits";
 
 export default function Detail() {
   const {
@@ -22,6 +25,9 @@ export default function Detail() {
   const { isLoading, data } = useQuery<IGetDetailProps>(
     ["contentsId", id],
     () => getDetails(id, pathname.includes("tvshows") ? "tv" : "movie")
+  );
+  const { data: credits } = useQuery<ICreditProps[]>(["credits", id], () =>
+    getCredits(id, pathname.includes("tvshows") ? "tv" : "movie")
   );
   const { data: similar } = useQuery<IGetResultProps[]>(["similar", id], () =>
     getSimilar(id, pathname.includes("tvshows") ? "tv" : "movie")
@@ -39,25 +45,25 @@ export default function Detail() {
       ) : (
         <>
           <section className="mb-10">
-            {data?.backdrop_path ? (
+            <img
+              className="w-full h-96 object-cover opacity-80"
+              src={
+                data && data.backdrop_path
+                  ? makeImagePath(data.backdrop_path)
+                  : NoBanner
+              }
+              alt={data?.name || data?.title}
+            />
+            <div className="mt-8 flex">
               <img
-                className="w-full h-96 object-cover opacity-80"
-                src={data && makeImagePath(data.backdrop_path)}
+                className={data?.poster_path ? "shadow-md" : "w-[300px]"}
+                src={
+                  data && data?.poster_path
+                    ? makeImagePath(data.poster_path, "w300")
+                    : NoPoster
+                }
                 alt={data?.name || data?.title}
               />
-            ) : (
-              <img src={NoBanner} alt="no-banner" />
-            )}
-            <div className="mt-8 flex">
-              {data?.poster_path ? (
-                <img
-                  className="shadow-md"
-                  src={data && makeImagePath(data.poster_path, "w300")}
-                  alt={data?.name || data?.title}
-                />
-              ) : (
-                <img className="w-[300px]" src={NoPoster} alt="no-poster" />
-              )}
               <div className="ml-5 space-y-2">
                 <h1 className="font-bold text-3xl">
                   {data?.title || data?.name}
@@ -91,6 +97,18 @@ export default function Detail() {
                 />
                 <p>{data?.overview || "줄거리 정보가 없습니다."}</p>
               </div>
+            </div>
+            <div>
+              <h1 className="my-8 font-bold text-2xl">출연</h1>
+              <ul className="grid grid-cols-5 gap-4">
+                {credits && credits.length > 0 ? (
+                  credits
+                    .slice(0, 10)
+                    .map((credit) => <Credits key={credit.id} {...credit} />)
+                ) : (
+                  <p className="text-gray-500">출연진 정보가 없습니다.</p>
+                )}
+              </ul>
             </div>
           </section>
           {similar && similar.length > 0 ? (
