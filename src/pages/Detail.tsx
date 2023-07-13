@@ -68,7 +68,7 @@ export default function Detail() {
                 <h1 className="font-bold text-3xl">
                   {data?.title || data?.name}
                 </h1>
-                <h4 className="text-sm">
+                <h4 className="text-sm text-gray-500">
                   {data?.original_title || data?.original_name}
                 </h4>
                 <p>
