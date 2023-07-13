@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IGetResultProps } from "../api/api";
 import { makeImagePath } from "../utils/utils";
 import NoPoster from "../assets/no-poster.jpg";
+import { scrollToTop } from "../utils/scrollToTop";
 
 export default function ContentsSliderItem({
   id,
@@ -11,9 +12,19 @@ export default function ContentsSliderItem({
   title,
   name,
 }: IGetResultProps) {
+  const navigate = useNavigate();
+  const onClick = () => {
+    if (title) {
+      navigate(`/movies/${id}`, { state: { id } });
+    } else {
+      navigate(`/tvshows/${id}`, { state: { id } });
+    }
+    scrollToTop();
+  };
+
   return (
     <div className="mr-4">
-      <Link to={title ? `/movies/${id}` : `/tvshows/${id}`} state={{ id }}>
+      <div onClick={onClick} className="cursor-pointer">
         {poster_path ? (
           <img
             className="text-center h-96 rounded-md shadow-md border"
@@ -35,7 +46,7 @@ export default function ContentsSliderItem({
               : first_air_date?.substring(0, 4)}
           </p>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }
