@@ -12,6 +12,7 @@ import NoBanner from "../assets/no-banner.jpg";
 import NoPoster from "../assets/no-poster.jpg";
 import Loading from "../components/Loading";
 import LikesButton from "../components/LikesButton";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 export default function Detail() {
   const {
@@ -28,6 +29,11 @@ export default function Detail() {
 
   return (
     <>
+      <HelmetProvider>
+        <Helmet>
+          <title>{data ? data?.name || data?.title : "Loading..."}</title>
+        </Helmet>
+      </HelmetProvider>
       {isLoading ? (
         <Loading />
       ) : (

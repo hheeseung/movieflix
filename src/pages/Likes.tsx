@@ -1,12 +1,18 @@
 import { useRecoilValue } from "recoil";
 import { likesAtom } from "../atoms/likes";
 import ContentsSliderItem from "../components/ContentsSliderItem";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 
 export default function Likes() {
   const likes = useRecoilValue(likesAtom);
 
   return (
     <>
+      <HelmetProvider>
+        <Helmet>
+          <title>MovieFlix</title>
+        </Helmet>
+      </HelmetProvider>
       <h1 className="mt-8 font-bold text-2xl mb-3">찜한 목록</h1>
       {likes.length > 0 ? (
         <section className="grid grid-cols-6">

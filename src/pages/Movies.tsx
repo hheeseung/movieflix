@@ -8,6 +8,7 @@ import {
 } from "../api/api";
 import ContentsSlider from "../components/ContentsSlider";
 import Loading from "../components/Loading";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 
 export default function Movies() {
   const { isLoading: loadingNowPlaying, data: nowPlaying } = useQuery<
@@ -27,23 +28,32 @@ export default function Movies() {
     loadingNowPlaying || loadingPopular || loadingTopRated || loadingTrending;
 
   return (
-    <section className="mt-8">
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          {nowPlaying && (
-            <ContentsSlider title="현재 상영작" data={nowPlaying} />
-          )}
-          {popular && <ContentsSlider title="인기 있는 영화" data={popular} />}
-          {topRated && (
-            <ContentsSlider title="평점 높은 영화" data={topRated} />
-          )}
-          {trending && (
-            <ContentsSlider title="입소문 자자한 영화" data={trending} />
-          )}
-        </>
-      )}
-    </section>
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <title>MovieFlix</title>
+        </Helmet>
+      </HelmetProvider>
+      <section className="mt-8">
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            {nowPlaying && (
+              <ContentsSlider title="현재 상영작" data={nowPlaying} />
+            )}
+            {popular && (
+              <ContentsSlider title="인기 있는 영화" data={popular} />
+            )}
+            {topRated && (
+              <ContentsSlider title="평점 높은 영화" data={topRated} />
+            )}
+            {trending && (
+              <ContentsSlider title="입소문 자자한 영화" data={trending} />
+            )}
+          </>
+        )}
+      </section>
+    </>
   );
 }
