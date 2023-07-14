@@ -112,7 +112,7 @@ export default function Detail() {
             </div>
             <div className="px-2 lg:px-0">
               <h1 className="my-8 font-bold text-2xl">출연</h1>
-              <ul className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4">
                 {credits && credits.length > 0 ? (
                   credits
                     .slice(0, 10)
