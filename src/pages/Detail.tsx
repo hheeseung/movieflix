@@ -78,23 +78,31 @@ export default function Detail() {
                       }분`
                     : null}
                 </p>
-                <p>
-                  {data?.release_date?.substring(0, 4) ||
-                    data?.first_air_date?.substring(0, 4)}
-                </p>
+                <div className="flex items-center">
+                  <p className="mr-1">
+                    {data?.release_date?.substring(0, 4) ||
+                      data?.first_air_date?.substring(0, 4)}
+                  </p>
+                  <LikesButton
+                    id={data?.id!}
+                    poster_path={data?.poster_path!}
+                    title={data?.title}
+                    name={data?.name}
+                    release_date={data?.release_date}
+                    first_air_date={data?.first_air_date}
+                  />
+                </div>
                 <div className="space-x-1">
                   {data?.genres.map((genre) => (
-                    <span key={genre.id}>#{genre.name}</span>
+                    <span
+                      className="px-2 py-1 rounded-full border"
+                      key={genre.id}
+                    >
+                      #{genre.name}
+                    </span>
                   ))}
                 </div>
-                <LikesButton
-                  id={data?.id!}
-                  poster_path={data?.poster_path!}
-                  title={data?.title}
-                  name={data?.name}
-                  release_date={data?.release_date}
-                  first_air_date={data?.first_air_date}
-                />
+
                 <p>{data?.overview || "줄거리 정보가 없습니다."}</p>
               </div>
             </div>
