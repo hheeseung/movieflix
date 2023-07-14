@@ -33,6 +33,7 @@ export default function ContentsSlider({ title, data }: IContentsSlider) {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
+          arrows: false,
         },
       },
       {
@@ -40,6 +41,7 @@ export default function ContentsSlider({ title, data }: IContentsSlider) {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
+          arrows: false,
         },
       },
       {
@@ -47,6 +49,7 @@ export default function ContentsSlider({ title, data }: IContentsSlider) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
+          arrows: false,
         },
       },
       {
@@ -54,6 +57,7 @@ export default function ContentsSlider({ title, data }: IContentsSlider) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
+          arrows: false,
         },
       },
     ],

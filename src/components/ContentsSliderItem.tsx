@@ -23,21 +23,13 @@ export default function ContentsSliderItem({
   };
 
   return (
-    <div className="mr-4">
+    <div className="mr-2">
       <div onClick={onClick} className="cursor-pointer">
-        {poster_path ? (
-          <img
-            className="text-center h-64 sm:h-72 md:h-80 rounded-md shadow-md border"
-            src={makeImagePath(poster_path, "w300")}
-            alt={title ?? name}
-          />
-        ) : (
-          <img
-            className="text-center h-64 sm:h-72 md:h-80 rounded-md shadow-md"
-            src={NoPoster}
-            alt="no-poster"
-          />
-        )}
+        <img
+          className="h-64 sm:h-72 md:h-80 rounded-md shadow-md border"
+          src={poster_path ? makeImagePath(poster_path, "w300") : NoPoster}
+          alt={title ?? name}
+        />
         <div className="p-2">
           <p className="font-semibold line-clamp-1">{title ?? name}</p>
           <p className="text-sm text-gray-500">

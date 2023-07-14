@@ -8,7 +8,8 @@ export default function PrevArrow(props: any) {
       style={{
         ...style,
         position: "absolute",
-        left: "-30px",
+        left: "-50px",
+        zIndex: "1",
       }}
       onClick={onClick}
     >
