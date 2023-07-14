@@ -23,7 +23,7 @@ export default function SearchForm() {
       <input
         {...register("keyword", { required: "검색어를 입력해주세요." })}
         className="w-60 px-2 py-1 border border-gray-200 outline-none text-sm rounded-md"
-        placeholder="검색어를 입력하세요."
+        placeholder="컨텐츠를 입력하세요."
       />
       <button>
         <BsSearch />

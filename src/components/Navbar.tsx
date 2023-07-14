@@ -30,7 +30,7 @@ export default function Navbar() {
           className={`${nowLocation("/tvshows")} hover:text-black`}
           to="/tvshows"
         >
-          드라마
+          TV
         </Link>
         <Link
           className={`${nowLocation("/likes")} hover:text-black`}
