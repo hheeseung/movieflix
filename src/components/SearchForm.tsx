@@ -17,15 +17,15 @@ export default function SearchForm() {
 
   return (
     <form
-      className="flex items-center space-x-2"
+      className="flex items-center space-x-1 sm:space-x-2"
       onSubmit={handleSubmit(onValid)}
     >
       <input
         {...register("keyword", { required: "검색어를 입력해주세요." })}
-        className="w-60 px-2 py-1 border border-gray-200 outline-none text-sm rounded-md"
+        className="w-36 sm:w-40 md:w-60 px-2 py-1 border border-gray-200 outline-none text-sm rounded-md placeholder:text-xs"
         placeholder="컨텐츠를 입력하세요."
       />
-      <button>
+      <button className="sm:block">
         <BsSearch />
       </button>
     </form>

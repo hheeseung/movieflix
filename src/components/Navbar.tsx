@@ -13,7 +13,7 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between items-center p-2 border-b border-gray-200">
-      <div className="flex items-center space-x-4 text-gray-500">
+      <div className="flex items-center space-x-2 sm:space-x-4 text-gray-500">
         <Link
           className="flex items-center font-semibold text-3xl text-blue-500"
           to="/"
@@ -21,7 +21,7 @@ export default function Navbar() {
           <span>
             <PiFilmSlate />
           </span>
-          <span>MovieFlix</span>
+          <span className="hidden sm:block">MovieFlix</span>
         </Link>
         <Link className={`${nowLocation("/movies")} hover:text-black`} to="/">
           영화

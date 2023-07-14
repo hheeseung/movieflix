@@ -20,11 +20,48 @@ export default function ContentsSlider({ title, data }: IContentsSlider) {
     slidesToScroll: 6,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 6,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 720,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="mt-3 mb-8">
-      <h1 className="font-bold text-2xl mb-3">{title}</h1>
+    <div className="mt-3 mb-8 px-2 lg:px-0">
+      <h1 className="font-bold text-xl md:text-2xl mb-3">{title}</h1>
       <ul>
         <Slider {...settings}>
           {data?.map((contents) => (

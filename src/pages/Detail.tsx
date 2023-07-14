@@ -46,7 +46,7 @@ export default function Detail() {
         <>
           <section className="mb-10">
             <img
-              className="w-full h-96 object-cover opacity-80"
+              className="w-full h-40 sm:h-52 md:h-96 object-cover opacity-80"
               src={
                 data && data.backdrop_path
                   ? makeImagePath(data.backdrop_path)
@@ -54,17 +54,21 @@ export default function Detail() {
               }
               alt={data?.name || data?.title}
             />
-            <div className="mt-8 flex">
+            <div className="mt-2 md:mt-8 flex flex-col md:flex-row">
               <img
-                className={data?.poster_path ? "shadow-md" : "w-[300px]"}
+                className={
+                  data?.poster_path
+                    ? "w-full p-2 md:w-80 md:p-0 md:shadow-md"
+                    : "w-[300px]"
+                }
                 src={
                   data && data?.poster_path
-                    ? makeImagePath(data.poster_path, "w300")
+                    ? makeImagePath(data.poster_path)
                     : NoPoster
                 }
                 alt={data?.name || data?.title}
               />
-              <div className="ml-5 space-y-2">
+              <div className="mt-4 md:mt-0 md:ml-5 px-2 lg:px-0 space-y-2">
                 <h1 className="font-bold text-3xl">
                   {data?.title || data?.name}
                 </h1>
@@ -106,9 +110,9 @@ export default function Detail() {
                 <p>{data?.overview || "줄거리 정보가 없습니다."}</p>
               </div>
             </div>
-            <div>
+            <div className="px-2 lg:px-0">
               <h1 className="my-8 font-bold text-2xl">출연</h1>
-              <ul className="grid grid-cols-5 gap-4">
+              <ul className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4">
                 {credits && credits.length > 0 ? (
                   credits
                     .slice(0, 10)
