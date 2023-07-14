@@ -40,8 +40,10 @@ export default function Search() {
       ) : null}
       {data?.find((item) => item.media_type === "tv") ? (
         <>
-          <h1 className="mt-4 font-bold text-xl md:text-2xl mb-3">TV</h1>
-          <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <h1 className="px-2 md:px-0 mt-4 font-bold text-xl md:text-2xl mb-3">
+            TV
+          </h1>
+          <section className="px-2 md:px-0 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {data?.map(
               (contents) =>
                 contents.media_type === "tv" && (
