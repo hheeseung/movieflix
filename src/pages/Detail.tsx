@@ -46,7 +46,7 @@ export default function Detail() {
         <>
           <section className="mb-10">
             <img
-              className="w-full h-40 sm:h-52 md:h-96 object-cover opacity-80"
+              className="w-full h-96 object-cover opacity-80"
               src={
                 data && data.backdrop_path
                   ? makeImagePath(data.backdrop_path)
@@ -58,7 +58,7 @@ export default function Detail() {
               <img
                 className={
                   data?.poster_path
-                    ? "w-full p-2 md:w-80 md:p-0 md:shadow-md"
+                    ? "w-72 mx-auto py-2 md:w-80 md:p-0 md:shadow-md"
                     : "w-[300px]"
                 }
                 src={
