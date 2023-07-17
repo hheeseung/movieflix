@@ -8,6 +8,7 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
+import Loading from "./components/Loading";
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Movies = lazy(() => import("./pages/Movies"));
@@ -51,7 +52,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Suspense fallback="..loading">
+    <Suspense fallback={<Loading />}>
       <RouterProvider router={router} />
     </Suspense>
   </React.StrictMode>
