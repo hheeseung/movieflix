@@ -53,6 +53,10 @@ export default function Detail() {
                   : NoBanner
               }
               alt={data?.name || data?.title}
+              width={100}
+              height={100}
+              loading="lazy"
+              decoding="async"
             />
             <div className="mt-2 md:mt-8 flex flex-col md:flex-row">
               <img
@@ -67,6 +71,10 @@ export default function Detail() {
                     : NoPoster
                 }
                 alt={data?.name || data?.title}
+                width={100}
+                height={100}
+                loading="lazy"
+                decoding="async"
               />
               <div className="mt-4 md:mt-0 md:ml-5 px-2 lg:px-0 space-y-2">
                 <h1 className="font-bold text-3xl">

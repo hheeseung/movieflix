@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -8,12 +8,13 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import NotFound from "./pages/NotFound";
-import Movies from "./pages/Movies";
-import TvShows from "./pages/TvShows";
-import Detail from "./pages/Detail";
-import Search from "./pages/Search";
-import Likes from "./pages/Likes";
+
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Movies = lazy(() => import("./pages/Movies"));
+const TvShows = lazy(() => import("./pages/TvShows"));
+const Detail = lazy(() => import("./pages/Detail"));
+const Search = lazy(() => import("./pages/Search"));
+const Likes = lazy(() => import("./pages/Likes"));
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Suspense fallback="..loading">
+      <RouterProvider router={router} />
+    </Suspense>
   </React.StrictMode>
 );
 
