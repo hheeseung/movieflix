@@ -20,13 +20,13 @@ https://stalwart-jalebi-ecc6e4.netlify.app/
 
 ## 기능
 
-### TMDB API
+### TMDB API 데이터 활용
 
 `TMDB API`를 호출해 화면에 데이터를 시각적으로 구현했습니다.
 
-### 슬라이드 구현
+### 컨텐츠 목록 슬라이드
 
-`React Slick` 라이브러를 사용해 컨텐츠 목록 슬라이더를 구현했습니다.
+`React Slick` 라이브러리를 사용해 컨텐츠 목록 슬라이더를 구현했습니다.
 
 ### 검색
 
@@ -37,3 +37,7 @@ https://stalwart-jalebi-ecc6e4.netlify.app/
 ![02](https://github.com/hheeseung/movieflix/assets/87454393/dd03cc81-742f-4cc2-9690-91fc3ebb366b)
 ![03](https://github.com/hheeseung/movieflix/assets/87454393/c82df240-e61c-40c7-915f-05cbfca1424d)
 마음에 드는 컨텐츠에 하트 버튼을 누르면 Local Storage에 해당 컨텐츠 정보가 저장되어 찜한 목록 페이지에서 조회할 수 있습니다.
+
+### 반응형 UI
+
+사용자 경험을 위해 반응형으로 제작하였습니다.
