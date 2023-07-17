@@ -62,7 +62,7 @@ export default function Detail() {
               <img
                 className={
                   data?.poster_path
-                    ? "w-72 mx-auto py-2 md:w-80 md:p-0 md:shadow-md"
+                    ? "w-72 py-2 md:w-80 md:p-0 md:shadow-md"
                     : "w-[300px]"
                 }
                 src={
