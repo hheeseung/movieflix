@@ -30,7 +30,7 @@ export default function ContentsSliderItem({
             className="h-64 sm:h-72 md:h-80 rounded-md shadow-md border"
             src={poster_path ? makeImagePath(poster_path, "w300") : NoPoster}
             alt={title || name}
-            width="100%"
+            width="90%"
             height="100%"
             loading="lazy"
             decoding="async"
